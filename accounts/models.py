@@ -6,7 +6,7 @@ from django.db import models
 class LECUser(AbstractUser):
 
     class AccountTypes(models.TextChoices):
-        PARENT = "parent", "Parent"
+        PARENT = "guardian", "Parent"
         DIRECTOR = "director", "Director"
         SITE_ADMIN = "site_admin", "Site Admin"
     ALL_ACCOUNT_TYPES = [account_type for account_type in AccountTypes]
