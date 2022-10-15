@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'guardian.apps.GuardianConfig',
-    'director.apps.DirectorConfig',
+    'org_admin.apps.OrgAdminConfig',
     'accounts.apps.AccountsConfig'
 ]
 

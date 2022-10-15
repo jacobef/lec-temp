@@ -1,6 +1,6 @@
 from django.db import models
 from accounts.models import LECUser
-from director.models import Program
+from org_admin.models import Program
 
 
 class Student(models.Model):

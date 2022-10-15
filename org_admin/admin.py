@@ -1,4 +1,4 @@
 from django.contrib import admin
-from director import models
+from org_admin import models
 
 admin.site.register(models.Program)
