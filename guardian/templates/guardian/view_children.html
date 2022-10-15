@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Children</title>
+</head>
+<body>
+{% for child in children %}
+    Name: {{ child.name }}<br>
+    Pronouns: {{ child.pronouns }}<br>
+    Allergies: {{ child.allergies }}<br>
+    Registered for the following programs:<br>
+    {% for registration in child.program_registrations.all %}
+        - {{ registration.program.name }}<br>
+    {% endfor %}
+    <br><br>
+{% endfor %}
+</body>
+</html>

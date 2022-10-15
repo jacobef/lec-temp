@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Programs list</title>
+</head>
+<body>
+<a href={% url "guardian:register" %}>Register for a program</a>
+<br>
+{% for program in programs %}
+    Program Name: {{ program.name }}<br>
+    Description: {{ program.description }}<br>
+{% endfor %}
+</body>
+</html>

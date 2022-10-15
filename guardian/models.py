@@ -9,10 +9,11 @@ class Student(models.Model):
     allergies = models.TextField(max_length=1000)
     guardian = models.ForeignKey(to=LECUser, related_name="children", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
 
 class ProgramRegistration(models.Model):
-    students = models.ManyToManyField(to=Student)
-    program = models.ForeignKey(to=Program, on_delete=models.CASCADE)
+    students = models.ManyToManyField(to=Student, related_name="program_registrations")
+    program = models.ForeignKey(to=Program, on_delete=models.CASCADE, related_name="registrations")
     emergency_contact_name = models.CharField(max_length=200)
     emergency_contact_phone_number = models.CharField(max_length=25)
-

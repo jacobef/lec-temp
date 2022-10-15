@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST">
+    {% csrf_token %}
+    <label for="students">Students:</label>
+    <select name="students" id="students" multiple>
+        {% for child in user_children %}
+            <option value="{{ child.pk }}">{{ child.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="hidden" value="{{ user.pk }}" name="user">
+    {{ form.as_p }}
+    <input type="submit" value="Register">
+</form>
+</body>
+</html>
