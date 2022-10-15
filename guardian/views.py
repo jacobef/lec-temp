@@ -13,6 +13,15 @@ def programs(request):
 def children(request):
     return render(request, "guardian/view_children.html", {'children': Student.objects.filter(guardian=request.user)})
 
+class AddChild(CreateView):
+    model = Student
+    fields = ["name", "pronouns", "allergies"]
+    template_name = "guardian/add_child.html"
+    success_url = reverse_lazy("guardian:children")
+    def form_valid(self, form):
+        form.instance.guardian = self.request.user
+        return super().form_valid(form)
+
 class RegisterForProgram(CreateView):
     model = ProgramRegistration
     form_class = ProgramRegistrationForm

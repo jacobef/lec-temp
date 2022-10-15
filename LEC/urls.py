@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from LEC import views
 
 urlpatterns = [
+    path('', views.index),
     path('admin/', admin.site.urls),
     path('guardian/', include('guardian.urls')),
-    path('org_admin/', include('org_admin.urls'))
+    path('org_admin/', include('org_admin.urls')),
+    # Weird URL name but a lot of Django views depend on it being "accounts"
+    path('accounts/', include('accounts.urls'))
 ]

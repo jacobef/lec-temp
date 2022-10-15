@@ -137,11 +137,11 @@ def create_account_type_groups():
 
 def create_test_accounts():
     print("Creating accounts for testing...")
-    for account_type in LECUser.ALL_ACCOUNT_TYPES:
-        account_type_in_username = account_type.lower().replace(' ', '_')
-        user = create_test_user(username=f"test_{account_type_in_username}")
-        user.account_type = account_type
-        print(f"Set account type of user \"{user}\" to \"{account_type}\"")
+    # Hack to get the actual variable names
+    for account_type_variable_name in [var for var, val in LECUser.AccountTypes.__dict__.items() if val in LECUser.ALL_ACCOUNT_TYPES]:
+        user = create_test_user(username=f"test_{account_type_variable_name.lower()}")
+        user.account_type = LECUser.AccountTypes[account_type_variable_name]
+        print(f"Set account type of user \"{user}\" to \"{user.account_type}\"")
         user.save()
     print("Test accounts created.", end='\n\n')
 

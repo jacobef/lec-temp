@@ -6,15 +6,24 @@ from django.db import models
 class LECUser(AbstractUser):
 
     class AccountTypes(models.TextChoices):
-        PARENT = "guardian", "Guardian"
-        ORG_ADMIN = "org_admin", "Org Admin"
-        SITE_ADMIN = "site_admin", "Site Admin"
+        GUARDIAN = "Parent/Guardian", "Parent/Guardian"
+        ORG_ADMIN = "LEC Admin", "LEC Admin"
+        SITE_ADMIN = "Site Admin (Developer)", "Site Admin (Developer)"
     ALL_ACCOUNT_TYPES = [account_type for account_type in AccountTypes]
 
     account_type = models.CharField(
         max_length=len(max(AccountTypes, key=len)),  # sets it to the maximum length of any value in AccountTypes
         choices=AccountTypes.choices
     )
+
+    requesting_org_admin = models.BooleanField(default=False)
+    requesting_site_admin = models.BooleanField(default=False)
+
+    # These fields are optional for AbstractUser; this makes them non-optional
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    email = models.EmailField()
+
 
     class NoSuchAccountType(Exception):
         pass
@@ -36,7 +45,7 @@ class LECUser(AbstractUser):
         if self.account_type and (self.account_type not in possible_account_types):
             raise LECUser.NoSuchAccountType(
                 f"""self.account_type ("{self.account_type}") is not set to a valid value.
-                It should be in LECUser.AccountTypes.Argh, or be an empty string.""")
+                It should be in LECUser.ALL_ACCOUNT_TYPES, or be an empty string.""")
 
         # 2) Checks if the user already has an account type.
         #    If it does, sets old_account_type_group (local variable) to the group corresponding to that account type.

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Username: {{ user.username }}<br>
+Name: {{ user.first_name }} {{ user.last_name }}<br>
+Account type: {{ user.account_type }}
+{% if user.requesting_org_admin %}
+    (requesting to have an LEC admin account; waiting on response)
+{% elif user.requesting_site_admin %}
+    (requesting to have a site admin account; waiting on response)
+{% endif %}
+<br>
+Email: {{ user.email }}<br>
+Children:
+{% for child in user.children.all %}
+    - {{ child.name }}<br>
+{% endfor %}
+</body>
+</html>
