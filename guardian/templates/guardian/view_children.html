@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Children</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Children{% endblock %}
+{% block content %}
 {% for child in children %}
     Name: {{ child.name }}<br>
     Pronouns: {{ child.pronouns }}<br>
@@ -15,5 +11,4 @@
     {% endfor %}
     <br><br>
 {% endfor %}
-</body>
-</html>
+{% endblock %}

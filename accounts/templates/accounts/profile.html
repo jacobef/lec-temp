@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Title{% endblock %}
+{% block content %}
 Username: {{ user.username }}<br>
 Name: {{ user.first_name }} {{ user.last_name }}<br>
 Account type: {{ user.account_type }}
@@ -19,5 +15,4 @@ Children:
 {% for child in user.children.all %}
     - {{ child.name }}<br>
 {% endfor %}
-</body>
-</html>
+{% endblock %}

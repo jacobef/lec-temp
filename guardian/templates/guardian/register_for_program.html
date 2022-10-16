@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Title{% endblock %}
+{% block content %}
 <form method="POST">
     {% csrf_token %}
     <label for="students">Students:</label>
@@ -17,5 +13,4 @@
     {{ form.as_p }}
     <input type="submit" value="Register">
 </form>
-</body>
-</html>
+{% endblock %}

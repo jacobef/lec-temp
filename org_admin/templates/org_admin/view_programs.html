@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}Title{% endblock %}
+{% block content %}
 {% for program in programs %}
     Name: {{ program.name }}<br>
     Description: {{ program.description }}<br>
     <br>
 {% endfor %}
-</body>
-</html>
+{% endblock %}
