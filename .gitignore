@@ -5,5 +5,4 @@ venv/
 db.sqlite3
 .DS_Store
 *.pyc
-templates
 env
