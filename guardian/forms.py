@@ -7,6 +7,7 @@ from guardian.models import ProgramRegistration, Student
 class ProgramRegistrationForm(forms.ModelForm):
     class Meta:
         model = ProgramRegistration
+        # "students" is also a field, but it's rendered and validated manually
         fields = ["program", "emergency_contact_name", "emergency_contact_phone_number"]
 
     def __init__(self, user, *args, **kwargs):

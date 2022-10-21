@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Announcement: {{ announcement.title }}{% endblock %}
+{% block content %}
+    <h2>{{ announcement.title }}</h2>
+    Sent on {{ announcement.time_sent }}<br>
+    {{ announcement.content }}<br>
+    <a href="{% url "guardian:view_program" program_pk=announcement.program.pk %}">Back to program</a>
+{% endblock %}

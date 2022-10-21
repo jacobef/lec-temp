@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load has_new_announcements_for %}
+
 {% block title %}Programs list{% endblock %}
 {% block content %}
 <a href={% url "guardian:register" %}>Register for a program</a>
@@ -6,5 +8,8 @@
 {% for program in programs %}
     Program Name: {{ program.name }}<br>
     Description: {{ program.description }}<br>
+    {% if program|has_new_announcements_for:user %}
+            This program has new announcements.
+    {% endif %}
 {% endfor %}
 {% endblock %}
