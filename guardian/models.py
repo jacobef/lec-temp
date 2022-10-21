@@ -8,6 +8,7 @@ class Student(models.Model):
     pronouns = models.CharField(max_length=50)
     allergies = models.TextField(max_length=1000)
     guardian = models.ForeignKey(to=LECUser, related_name="children", on_delete=models.CASCADE)
+    additional_info = models.TextField(max_length=1000)
 
     def __str__(self):
         return self.name
