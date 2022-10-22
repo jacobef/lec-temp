@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-{% block title %}Title{% endblock title %}
-{% block content %}
-    {% for announcement in announcements|dictsortreversed:"time_sent" %}
-        <h2>{{ announcement.title }}</h2>
-        Sent on {{ announcement.time_sent }}<br>
-        {{ announcement.content }}<br>
-    {% endfor %}
-{% endblock %}

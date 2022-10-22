@@ -15,7 +15,6 @@ class ProgramRegistrationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
     def clean(self):
-        print(self.data.getlist("students"))
         for student_pk in self.data.getlist("students"):
             student = Student.objects.get(pk=student_pk)
             if student.guardian != self.user:

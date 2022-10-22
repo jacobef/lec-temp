@@ -11,5 +11,5 @@ urlpatterns = [
     path('announcements/<int:announcement_pk>/', views.view_announcement, name="view_announcement"),
     path('children/', views.children, name="children"),
     path('children/add/', views.AddChild.as_view(), name="add_child"),
-    path('register/', views.RegisterForProgram.as_view(), name="register"),
+    path('programs/register/', views.RegisterForProgram.as_view(), name="register_for_program"),
 ]

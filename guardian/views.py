@@ -31,7 +31,7 @@ class AddChild(CreateView):
     model = Student
     fields = ["name", "pronouns", "allergies"]
     template_name = "guardian/add_child.html"
-    success_url = reverse_lazy("guardian:children")
+    success_url = reverse_lazy("guardian:register_for_program")
 
     def form_valid(self, form):
         form.instance.guardian = self.request.user
@@ -48,11 +48,6 @@ class RegisterForProgram(CreateView):
         kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['user_children'] = Student.objects.filter(guardian=self.request.user)
-        return context
 
     def form_valid(self, form):
         form.instance.save()

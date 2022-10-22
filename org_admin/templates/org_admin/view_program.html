@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Program: {{ program.name }}{% endblock %}
+{% block content %}
+    <a href="{% url "org_admin:programs" %}">Back to all programs</a>
+    <h1>Program: {{ program.name }}</h1>
+    Description: {{ program.description|linebreaks }}
+    <h2>Announcements for this program:</h2>
+    <a href="{% url "org_admin:make_announcement" program_pk=program.pk %}">Make announcement</a>
+    {% for announcement in program.announcements.all|dictsortreversed:"time_sent" %}
+        <h3>{{ announcement.title }}</h3>
+        {{ announcement.time_sent }}<br>
+        {{ announcement.content|linebreaks }}
+        <br>
+    {% endfor %}
+{% endblock %}

@@ -3,14 +3,18 @@
 {% block content %}
 <form method="POST">
     {% csrf_token %}
-    <label for="students">Students:</label>
-    <select name="students" id="students" multiple>
-        {% for child in user_children %}
-            <option value="{{ child.pk }}">{{ child.name }}</option>
-        {% endfor %}
-    </select>
-    <input type="hidden" value="{{ user.pk }}" name="user">
     {{ form.as_p }}
+    <label for="students">Students:</label>
+    {% if user.children.exists %}
+        <select name="students" id="students" multiple>
+            {% for child in user.children.all %}
+                <option value="{{ child.pk }}">{{ child.name }}</option>
+            {% endfor %}
+        </select>
+    {% endif %}
+    <a href="{% url "guardian:add_child" %}">Add a child</a>
+    <input type="hidden" value="{{ user.pk }}" name="user">
+    <br>
     <input type="submit" value="Register">
 </form>
 {% endblock %}

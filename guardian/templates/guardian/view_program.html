@@ -1,18 +1,33 @@
 {% extends "base.html" %}
+{% load program_tags %}
+
 {% block title %}Program: {{ program.name }}{% endblock %}
 {% block content %}
+    <a href="{% url "guardian:programs" %}">Back to all programs</a>
     <h1>Program: {{ program.name }}</h1>
-    Description: {{ program.description }}
+    {% if user|has_children_in:program %}
+        Your children in this program: {{ user|children_in:program|join:", " }}
+    {% else %}
+        None of your children are registered for this program.
+    {% endif %}
+    <br>
+    <a href="{% url "guardian:register_for_program" %}">Register children for this program</a>
     <br><br>
-    <h2>Announcements: </h2>
-    {% for announcement in program.announcements.all|dictsortreversed:"time_sent" %}
-        <h3>
-            {% if user not in announcement.read_by.all %}
-                (new)
-            {% endif %}
-            {{ announcement.title }}
-        </h3>
-        {{ announcement.time_sent }}<br>
-        <a href="{% url "guardian:view_announcement" announcement_pk=announcement.pk %}">View</a>
-    {% endfor %}
+    Description: {{ program.description|linebreaks }}
+    <br><br>
+    {% if user|has_children_in:program %}
+        <h2>Announcements: </h2>
+        {% for announcement in program.announcements.all|dictsortreversed:"time_sent" %}
+            <h3>
+                {% if user not in announcement.read_by.all %}
+                    (unread)
+                {% endif %}
+                {{ announcement.title }}
+            </h3>
+            {{ announcement.time_sent }}<br>
+            <a href="{% url "guardian:view_announcement" announcement_pk=announcement.pk %}">View</a>
+        {% empty %}
+            No announcements yet.
+        {% endfor %}
+    {% endif %}
 {% endblock %}

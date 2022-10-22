@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block title %}Title{% endblock %}
 {% block content %}
+<a href="{% url "org_admin:add_program" %}">Add program</a><br>
 {% for program in programs %}
-    Name: {{ program.name }}<br>
-    Description: {{ program.description }}<br>
+    {{ program.name }}
+    <a href="{% url "org_admin:view_program" program_pk=program.pk %}">[View]</a>
     <br>
 {% endfor %}
 {% endblock %}

@@ -3,6 +3,6 @@
 {% block content %}
     <h2>{{ announcement.title }}</h2>
     Sent on {{ announcement.time_sent }}<br>
-    {{ announcement.content }}<br>
+    {{ announcement.content|linebreaks }}<br>
     <a href="{% url "guardian:view_program" program_pk=announcement.program.pk %}">Back to program</a>
 {% endblock %}
