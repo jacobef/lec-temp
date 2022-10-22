@@ -15,7 +15,7 @@ def children(request):
 
 class AddChild(CreateView):
     model = Student
-    fields = ["name", "pronouns", "allergies"]
+    fields = ["name", "pronouns", "allergies", "additional_info"]
     template_name = "guardian/add_child.html"
     success_url = reverse_lazy("guardian:children")
     def form_valid(self, form):
